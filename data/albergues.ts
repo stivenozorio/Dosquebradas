@@ -87,7 +87,7 @@ export const albergues: Albergue[] = [
     id: "coliseo-municipal-dosquebradas",
     nombre: "Coliseo Municipal de Dosquebradas",
     tipo: "Coliseo",
-    estado: "no_confirmado",
+    estado: "disponible",
     direccion:
       "Sector Colinas del Bosque / Villa del Campo, muy cerca del Cuerpo Oficial de Bomberos de Dosquebradas.",
     barrio: null,
@@ -97,7 +97,7 @@ export const albergues: Albergue[] = [
     capacidad: null,
     observaciones:
       "Punto de atención con apoyo del hospital militar y 20 carpas de contingencia instaladas.",
-    ultimaActualizacion: "2026-08-14T01:00:00-05:00",
+    ultimaActualizacion: "2026-08-14T02:00:00-05:00",
     fuente: "Referencia suministrada por el administrador de la plataforma",
     fuenteUrl: null,
   },
