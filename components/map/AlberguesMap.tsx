@@ -53,7 +53,7 @@ function AjustarVista({ posiciones }: AjustarVistaProps) {
   useEffect(() => {
     if (posiciones.length === 0) return;
     if (posiciones.length === 1) {
-      map.setView(posiciones[0], 15);
+      map.setView(posiciones[0], 17);
       return;
     }
     map.fitBounds(L.latLngBounds(posiciones), {
@@ -85,7 +85,7 @@ function ControladorMapa({
     if (!seleccionadoId) return;
     const albergue = albergues.find((a) => a.id === seleccionadoId);
     if (albergue && tieneCoordenadas(albergue)) {
-      map.flyTo([albergue.latitud, albergue.longitud], 16, { duration: 0.6 });
+      map.flyTo([albergue.latitud, albergue.longitud], 18, { duration: 0.6 });
       markerRefs.current[seleccionadoId]?.openPopup();
     }
   }, [seleccionadoId, albergues, map, markerRefs]);
