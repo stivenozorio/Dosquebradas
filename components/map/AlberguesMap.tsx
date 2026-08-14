@@ -36,6 +36,38 @@ function crearIcono(albergue: Albergue) {
   });
 }
 
+interface AjustarVistaProps {
+  posiciones: [number, number][];
+}
+
+/**
+ * Encuadra el mapa para que todos los marcadores queden visibles al
+ * cargar, en vez de depender de un centro y zoom fijos que pueden dejar
+ * albergues fuera de la vista inicial (p. ej. al agregar uno más alejado).
+ * Solo se ejecuta cuando cambia el conjunto de coordenadas, no en cada
+ * render, para no "saltar" la vista mientras el usuario navega el mapa.
+ */
+function AjustarVista({ posiciones }: AjustarVistaProps) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (posiciones.length === 0) return;
+    if (posiciones.length === 1) {
+      map.setView(posiciones[0], 15);
+      return;
+    }
+    map.fitBounds(L.latLngBounds(posiciones), {
+      padding: [32, 32],
+      maxZoom: 16,
+    });
+    // Se compara por valor (JSON) a propósito: solo debe reencuadrar
+    // cuando cambia el conjunto de coordenadas, no en cada render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(posiciones), map]);
+
+  return null;
+}
+
 interface ControladorMapaProps {
   albergues: Albergue[];
   seleccionadoId: string | null;
@@ -73,6 +105,10 @@ export default function AlberguesMap({
   onSeleccionar,
 }: AlberguesMapProps) {
   const conCoordenadas = albergues.filter(tieneCoordenadas);
+  const posiciones: [number, number][] = conCoordenadas.map((a) => [
+    a.latitud,
+    a.longitud,
+  ]);
   const markerRefs = useRef<Record<string, L.Marker | null>>({});
   const plataforma = detectarPlataformaMapas();
 
@@ -88,6 +124,7 @@ export default function AlberguesMap({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <AjustarVista posiciones={posiciones} />
         <ControladorMapa
           albergues={albergues}
           seleccionadoId={seleccionadoId}
