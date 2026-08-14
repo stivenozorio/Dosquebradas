@@ -83,4 +83,21 @@ export const albergues: Albergue[] = [
     fuente: "Referencia suministrada por el administrador de la plataforma",
     fuenteUrl: null,
   },
+  {
+    id: "coliseo-municipal-dosquebradas",
+    nombre: "Coliseo Municipal de Dosquebradas",
+    tipo: "Coliseo",
+    estado: "no_confirmado",
+    direccion: null,
+    barrio: null,
+    latitud: 4.8383,
+    longitud: -75.6741,
+    telefono: null,
+    capacidad: null,
+    observaciones:
+      "Punto de atención con apoyo del hospital militar y 20 carpas de contingencia instaladas.",
+    ultimaActualizacion: "2026-08-14T00:00:00-05:00",
+    fuente: "Referencia suministrada por el administrador de la plataforma",
+    fuenteUrl: null,
+  },
 ];
