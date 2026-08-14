@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/*
+ * Paleta institucional — Municipio de Dosquebradas, Risaralda.
+ *
+ * Verde y amarillo: colores de la bandera oficial del municipio
+ * (verde = esperanza de su gente, amarillo = riqueza de su suelo).
+ * Azul y rojo: colores del borde del escudo municipal.
+ * Gris: uno de los cuarteles del escudo, usado aquí como neutro de UI.
+ *
+ * Esta paleta se usa en todo el sitio en lugar de una combinación
+ * genérica, para que la interfaz se sienta claramente ligada a la
+ * identidad institucional de Dosquebradas.
+ */
+:root {
+  --background: #fbfaf6;
+  --foreground: #1a2420;
+
+  --color-dq-green-50: #eaf6ee;
+  --color-dq-green-100: #cdebd7;
+  --color-dq-green-200: #a3dab6;
+  --color-dq-green-300: #71c391;
+  --color-dq-green-400: #46aa71;
+  --color-dq-green-500: #2c8f58;
+  --color-dq-green-600: #1f7a48;
+  --color-dq-green-700: #186339;
+  --color-dq-green-800: #144f2e;
+  --color-dq-green-900: #0f3d24;
+
+  --color-dq-yellow-50: #fffbea;
+  --color-dq-yellow-100: #fff3c4;
+  --color-dq-yellow-200: #ffe58a;
+  --color-dq-yellow-300: #ffd452;
+  --color-dq-yellow-400: #ffc328;
+  --color-dq-yellow-500: #f5b400;
+  --color-dq-yellow-600: #d69600;
+  --color-dq-yellow-700: #ad7600;
+  --color-dq-yellow-800: #855900;
+  --color-dq-yellow-900: #5c3d00;
+
+  --color-dq-blue-600: #1e4b8c;
+  --color-dq-blue-700: #163a6b;
+
+  --color-dq-red-600: #c81e2c;
+  --color-dq-red-700: #a11722;
+
+  --color-dq-gray-50: #f4f5f4;
+  --color-dq-gray-100: #e7e9e6;
+  --color-dq-gray-200: #d3d6d1;
+  --color-dq-gray-600: #5b615c;
+  --color-dq-gray-800: #2c322d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-dq-green-50: var(--color-dq-green-50);
+  --color-dq-green-100: var(--color-dq-green-100);
+  --color-dq-green-200: var(--color-dq-green-200);
+  --color-dq-green-300: var(--color-dq-green-300);
+  --color-dq-green-400: var(--color-dq-green-400);
+  --color-dq-green-500: var(--color-dq-green-500);
+  --color-dq-green-600: var(--color-dq-green-600);
+  --color-dq-green-700: var(--color-dq-green-700);
+  --color-dq-green-800: var(--color-dq-green-800);
+  --color-dq-green-900: var(--color-dq-green-900);
+
+  --color-dq-yellow-50: var(--color-dq-yellow-50);
+  --color-dq-yellow-100: var(--color-dq-yellow-100);
+  --color-dq-yellow-200: var(--color-dq-yellow-200);
+  --color-dq-yellow-300: var(--color-dq-yellow-300);
+  --color-dq-yellow-400: var(--color-dq-yellow-400);
+  --color-dq-yellow-500: var(--color-dq-yellow-500);
+  --color-dq-yellow-600: var(--color-dq-yellow-600);
+  --color-dq-yellow-700: var(--color-dq-yellow-700);
+  --color-dq-yellow-800: var(--color-dq-yellow-800);
+  --color-dq-yellow-900: var(--color-dq-yellow-900);
+
+  --color-dq-blue-600: var(--color-dq-blue-600);
+  --color-dq-blue-700: var(--color-dq-blue-700);
+
+  --color-dq-red-600: var(--color-dq-red-600);
+  --color-dq-red-700: var(--color-dq-red-700);
+
+  --color-dq-gray-50: var(--color-dq-gray-50);
+  --color-dq-gray-100: var(--color-dq-gray-100);
+  --color-dq-gray-200: var(--color-dq-gray-200);
+  --color-dq-gray-600: var(--color-dq-gray-600);
+  --color-dq-gray-800: var(--color-dq-gray-800);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Enlace de accesibilidad "saltar al contenido" */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-dq-green-800);
+  color: white;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Estilos del mapa Leaflet */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0.75rem;
+}
