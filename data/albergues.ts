@@ -21,6 +21,7 @@ export const albergues: Albergue[] = [
     id: "polideportivo-campestre-b",
     nombre: "Polideportivo del Campestre B",
     tipo: "Polideportivo",
+    categoria: "albergue",
     estado: "no_disponible",
     direccion: "Contiguo al parque infantil y la manzana 13/14 del sector.",
     barrio: "Campestre B",
@@ -37,6 +38,7 @@ export const albergues: Albergue[] = [
     id: "centro-vida-violetas",
     nombre: "Centro Vida Violetas",
     tipo: "Centro Vida",
+    categoria: "albergue",
     estado: "disponible",
     direccion: null,
     barrio: "Violetas",
@@ -53,6 +55,7 @@ export const albergues: Albergue[] = [
     id: "centro-vida-jose-argemiro-cardenas",
     nombre: "Centro Vida José Argemiro Cárdenas",
     tipo: "Centro Vida",
+    categoria: "albergue",
     estado: "disponible",
     direccion:
       "Sector Santa Isabel / La Capilla, cerca a la Av. Ferrocarril y la zona administrativa del Centro Vida de Dosquebradas.",
@@ -69,7 +72,8 @@ export const albergues: Albergue[] = [
   {
     id: "coliseo-municipal-dosquebradas",
     nombre: "Coliseo Municipal de Dosquebradas",
-    tipo: "Coliseo",
+    tipo: "Hospital Militar / Punto de Atención",
+    categoria: "punto_atencion",
     estado: "disponible",
     direccion:
       "Sector Colinas del Bosque / Villa del Campo, muy cerca del Cuerpo Oficial de Bomberos de Dosquebradas.",

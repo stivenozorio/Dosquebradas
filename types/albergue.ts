@@ -9,6 +9,16 @@ export type EstadoAlbergue =
   | "no_confirmado";
 
 /**
+ * Categoría del punto:
+ * - "albergue": punto de alojamiento temporal para la comunidad.
+ * - "punto_atencion": punto de atención médica/institucional (p. ej. un
+ *   hospital militar instalado en un coliseo) que NO es un albergue,
+ *   aunque comparta la misma estructura de datos y se muestre en el
+ *   mismo mapa.
+ */
+export type CategoriaPunto = "albergue" | "punto_atencion";
+
+/**
  * Modelo de datos de un albergue oficial.
  *
  * Cualquier campo sin confirmación oficial debe quedar en `null`.
@@ -19,6 +29,7 @@ export interface Albergue {
   id: string;
   nombre: string;
   tipo: string;
+  categoria: CategoriaPunto;
   estado: EstadoAlbergue;
   direccion: string | null;
   barrio: string | null;

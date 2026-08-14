@@ -18,18 +18,36 @@ export default function AlberguesExplorer({
   const [filtro, setFiltro] = useState<EstadoAlbergue | "todos">("todos");
   const [seleccionadoId, setSeleccionadoId] = useState<string | null>(null);
 
+  const soloAlbergues = useMemo(
+    () => albergues.filter((a) => a.categoria === "albergue"),
+    [albergues]
+  );
+  const puntosAtencion = useMemo(
+    () => albergues.filter((a) => a.categoria === "punto_atencion"),
+    [albergues]
+  );
+
+  function coincideTexto(albergue: Albergue, texto: string) {
+    return (
+      texto.length === 0 ||
+      albergue.nombre.toLowerCase().includes(texto) ||
+      albergue.tipo.toLowerCase().includes(texto) ||
+      (albergue.barrio ?? "").toLowerCase().includes(texto)
+    );
+  }
+
   const albergesFiltrados = useMemo(() => {
     const texto = query.trim().toLowerCase();
-    return albergues.filter((albergue) => {
-      const coincideTexto =
-        texto.length === 0 ||
-        albergue.nombre.toLowerCase().includes(texto) ||
-        albergue.tipo.toLowerCase().includes(texto) ||
-        (albergue.barrio ?? "").toLowerCase().includes(texto);
+    return soloAlbergues.filter((albergue) => {
       const coincideFiltro = filtro === "todos" || albergue.estado === filtro;
-      return coincideTexto && coincideFiltro;
+      return coincideTexto(albergue, texto) && coincideFiltro;
     });
-  }, [albergues, query, filtro]);
+  }, [soloAlbergues, query, filtro]);
+
+  const puntosAtencionFiltrados = useMemo(() => {
+    const texto = query.trim().toLowerCase();
+    return puntosAtencion.filter((punto) => coincideTexto(punto, texto));
+  }, [puntosAtencion, query]);
 
   function seleccionarAlbergue(id: string) {
     setSeleccionadoId(id);
@@ -38,7 +56,7 @@ export default function AlberguesExplorer({
   return (
     <div className="flex flex-col gap-10">
       <NearestShelterFinder
-        albergues={albergues}
+        albergues={soloAlbergues}
         onSeleccionar={seleccionarAlbergue}
       />
 
@@ -80,6 +98,41 @@ export default function AlberguesExplorer({
           )}
         </div>
       </section>
+
+      {puntosAtencionFiltrados.length > 0 && (
+        <section
+          id="puntos-atencion"
+          aria-labelledby="puntos-atencion-titulo"
+          className="scroll-mt-20"
+        >
+          <h2
+            id="puntos-atencion-titulo"
+            className="text-xl font-bold text-dq-blue-700 sm:text-2xl"
+          >
+            🏥 Puntos de atención (no son albergues)
+          </h2>
+          <p className="mt-1 text-sm text-dq-gray-600">
+            Estos puntos brindan atención médica o institucional durante la
+            emergencia, pero no son sitios de alojamiento.
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {puntosAtencionFiltrados.map((punto) => (
+              <AlbergueCard
+                key={punto.id}
+                albergue={punto}
+                destacado={punto.id === seleccionadoId}
+                onVerEnMapa={(id) => {
+                  setSeleccionadoId(id);
+                  document
+                    .getElementById("mapa")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       <MapSection
         albergues={albergues}

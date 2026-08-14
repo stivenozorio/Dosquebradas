@@ -35,7 +35,13 @@ export default function AlbergueCard({
             {albergue.tipo}
           </p>
         </div>
-        <EstadoBadge estado={albergue.estado} />
+        {albergue.categoria === "punto_atencion" ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-dq-blue-600/30 bg-blue-50 px-3 py-1 text-sm font-semibold text-dq-blue-700">
+            🏥 Punto de atención
+          </span>
+        ) : (
+          <EstadoBadge estado={albergue.estado} />
+        )}
       </div>
 
       <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-sm text-dq-gray-800 sm:grid-cols-2">

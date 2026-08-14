@@ -24,12 +24,17 @@ const COLOR_BORDE_MARCADOR: Record<Albergue["estado"], string> = {
   no_confirmado: "#6b7280",
 };
 
+const COLOR_PUNTO_ATENCION = "#1e4b8c";
+
 function crearIcono(albergue: Albergue) {
-  const config = ESTADOS_CONFIG[albergue.estado];
-  const colorBorde = COLOR_BORDE_MARCADOR[albergue.estado];
+  const esPuntoAtencion = albergue.categoria === "punto_atencion";
+  const icono = esPuntoAtencion ? "🏥" : ESTADOS_CONFIG[albergue.estado].icono;
+  const colorBorde = esPuntoAtencion
+    ? COLOR_PUNTO_ATENCION
+    : COLOR_BORDE_MARCADOR[albergue.estado];
   return L.divIcon({
     className: "",
-    html: `<span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9999px;background:white;border:3px solid ${colorBorde};box-shadow:0 2px 6px rgba(0,0,0,0.35);font-size:16px;">${config.icono}</span>`,
+    html: `<span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9999px;background:white;border:3px solid ${colorBorde};box-shadow:0 2px 6px rgba(0,0,0,0.35);font-size:16px;">${icono}</span>`,
     iconSize: [34, 34],
     iconAnchor: [17, 17],
     popupAnchor: [0, -17],
@@ -143,10 +148,16 @@ export default function AlberguesMap({
             <Popup>
               <div className="min-w-[180px] space-y-1">
                 <p className="font-bold text-dq-green-900">{albergue.nombre}</p>
-                <p className="text-sm">
-                  {ESTADOS_CONFIG[albergue.estado].icono}{" "}
-                  {ESTADOS_CONFIG[albergue.estado].label}
-                </p>
+                {albergue.categoria === "punto_atencion" ? (
+                  <p className="text-xs font-semibold text-dq-blue-700">
+                    🏥 Punto de atención (no es un albergue)
+                  </p>
+                ) : (
+                  <p className="text-sm">
+                    {ESTADOS_CONFIG[albergue.estado].icono}{" "}
+                    {ESTADOS_CONFIG[albergue.estado].label}
+                  </p>
+                )}
                 <p className="text-xs text-dq-gray-600">
                   {formatUbicacion(albergue)}
                 </p>
