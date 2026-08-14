@@ -31,7 +31,7 @@ export default function Footer() {
           <p className="text-dq-green-100">Dosquebradas, Risaralda</p>
         </div>
 
-        <div className="mt-6 border-t border-dq-green-700 pt-6 text-sm">
+        <div className="mt-6 flex flex-col gap-2 border-t border-dq-green-700 pt-6 text-sm">
           <a
             href="https://www.dosquebradas.gov.co/"
             target="_blank"
@@ -39,6 +39,14 @@ export default function Footer() {
             className="inline-flex min-h-11 items-center font-medium text-dq-yellow-400 underline underline-offset-2 hover:text-dq-yellow-300"
           >
             Página oficial de la Alcaldía de Dosquebradas ↗
+          </a>
+          <a
+            href="https://whatsapp.com/channel/0029VbDGSA9KAwElTAuGtt2p"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center font-medium text-dq-yellow-400 underline underline-offset-2 hover:text-dq-yellow-300"
+          >
+            Canal oficial de WhatsApp de la Alcaldía ↗
           </a>
         </div>
 
